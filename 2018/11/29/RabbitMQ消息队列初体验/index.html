@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="RabbitMQ,">
 
 
 
@@ -89,17 +89,23 @@
 
 
 
-<meta name="description" content="这是我第一篇博客，记录生活工作中的见解和心得。">
+<meta name="description" content="很早之前就听说过MQ，都是零散的看到些博客。现在把学习的东西系统的整理下。">
+<meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HQF第一篇博客">
-<meta property="og:url" content="https://bighuangbrother.github.io/2018/11/07/我的第一篇文章/index.html">
+<meta property="og:title" content="RabbitMQ消息队列初体验">
+<meta property="og:url" content="https://bighuangbrother.github.io/2018/11/29/RabbitMQ消息队列初体验/index.html">
 <meta property="og:site_name" content="HuangQF">
-<meta property="og:description" content="这是我第一篇博客，记录生活工作中的见解和心得。">
+<meta property="og:description" content="很早之前就听说过MQ，都是零散的看到些博客。现在把学习的东西系统的整理下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T06:22:32.633Z">
+<meta property="og:image" content="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-43-04.png">
+<meta property="og:image" content="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/queue.png">
+<meta property="og:image" content="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-46-43.png">
+<meta property="og:image" content="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-49-08.png">
+<meta property="og:updated_time" content="2018-11-29T03:49:56.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HQF第一篇博客">
-<meta name="twitter:description" content="这是我第一篇博客，记录生活工作中的见解和心得。">
+<meta name="twitter:title" content="RabbitMQ消息队列初体验">
+<meta name="twitter:description" content="很早之前就听说过MQ，都是零散的看到些博客。现在把学习的东西系统的整理下。">
+<meta name="twitter:image" content="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-43-04.png">
 
 
 
@@ -129,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="https://bighuangbrother.github.io/2018/11/07/我的第一篇文章/">
+  <link rel="canonical" href="https://bighuangbrother.github.io/2018/11/29/RabbitMQ消息队列初体验/">
 
 
 
@@ -137,7 +143,7 @@
 
 
 
-  <title>HQF第一篇博客 | HuangQF</title>
+  <title>RabbitMQ消息队列初体验 | HuangQF</title>
   
 
 
@@ -302,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bighuangbrother.github.io/2018/11/07/我的第一篇文章/">
+    <link itemprop="mainEntityOfPage" href="https://bighuangbrother.github.io/2018/11/29/RabbitMQ消息队列初体验/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HuangQF">
@@ -319,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HQF第一篇博客</h1>
+          <h1 class="post-title" itemprop="name headline">RabbitMQ消息队列初体验</h1>
         
 
         <div class="post-meta">
@@ -331,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T14:24:10+08:00">
-                2018-11-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T10:47:48+08:00">
+                2018-11-29
               </time>
             
 
@@ -354,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/MQ/" itemprop="url" rel="index">
+                    <span itemprop="name">MQ</span>
                   </a>
                 </span>
 
@@ -390,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  21
+                  1.1k
                 </span>
               
 
@@ -406,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -427,7 +433,19 @@
       
 
       
-        <p>这是我第一篇博客，记录生活工作中的见解和心得。</p>
+        <p>很早之前就听说过MQ，都是零散的看到些博客。现在把学习的东西系统的整理下。<br><a id="more"></a></p>
+<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><p>MQ全称(Message Queue)又名消息队列，是一种异步通讯的中间件。可以将它理解成邮局，发送者将消息传递到邮局，然后由邮局帮我们发送给具体的消息接收者（消费者），具体发送过程与时间我们无需关心，它也不会干扰我进行其它事情。常见的MQ有kafka、activemq、zeromq、rabbitmq 等等，各大MQ的对比和优劣势可以自行Google</p>
+<blockquote>
+<p>Rabbit MQ<br>RabbitMQ是一个遵循AMQP协议由面向高并发的erlanng语言开发而成，用在实时的对可靠性要求比较高的消息传递上，支持多种语言客户端。支持延迟队列（这是一个非常有用的功能）….</p>
+</blockquote>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="ConnectionFactory、Connection、Channel"><a href="#ConnectionFactory、Connection、Channel" class="headerlink" title="ConnectionFactory、Connection、Channel"></a>ConnectionFactory、Connection、Channel</h3><p>  ConnectionFactory、Connection、Channel都是RabbitMQ对外提供的API中最基本的对象。Connection是RabbitMQ的socket链接，它封装了socket协议相关部分逻辑。ConnectionFactory为Connection的制造工厂。<br>Channel是我们与RabbitMQ打交道的最重要的一个接口，我们大部分的业务操作是在Channel这个接口中完成的，包括定义Queue、定义Exchange、绑定Queue与Exchange、发布消息等。</p>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p>Queue(队列)是Rabbit内部对象用来存储信息，用下图表示。<br><img src="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-43-04.png" alt=""><br>RabbitMQ中的信息只能存储在Queue中，生产者（下图中的P）生产消息并最终投递到Queue中，消费者（下图中的C）可以从Queue中获取消息并消费。<br><img src="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/queue.png" alt=""><br>多个消费者可以订阅同一个Queue，这时Queue中的消息会被平均分摊给多个消费者进行处理，而不是每个消费者都收到所有的消息并处理。<br><img src="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-46-43.png" alt=""></p>
+<h3 id="Message-acknowledgment"><a href="#Message-acknowledgment" class="headerlink" title="Message acknowledgment"></a>Message acknowledgment</h3><p>在实际应用中，可能会发生消费者收到Queue中的消息，但没有处理完成就宕机（或出现其他意外）的情况，这种情况下就可能会导致消息丢失。为了避免这种情况发生，我们可以要求消费者在消费完消息后发送一个回执给RabbitMQ，RabbitMQ收到消息回执（Message acknowledgment）后才将该消息从Queue中移除；如果RabbitMQ没有收到回执并检测到消费者的RabbitMQ连接断开，则RabbitMQ会将该消息发送给其他消费者（如果存在多个消费者）进行处理。这里不存在timeout概念，一个消费者处理消息时间再长也不会导致该消息被发送给其他消费者，除非它的RabbitMQ连接断开。<br>这里会产生另外一个问题，如果我们的开发人员在处理完业务逻辑后，忘记发送回执给RabbitMQ，这将会导致严重的bug——Queue中堆积的消息会越来越多；消费者重启后会重复消费这些消息并重复执行业务逻辑…</p>
+<h3 id="Message-durability"><a href="#Message-durability" class="headerlink" title="Message durability"></a>Message durability</h3><p>如果我们希望即使在RabbitMQ服务重启的情况下，也不会丢失消息，我们可以将Queue与Message都设置为可持久化的（durable），这样可以保证绝大部分情况下我们的RabbitMQ消息不会丢失。但依然解决不了小概率丢失事件的发生（比如RabbitMQ服务器已经接收到生产者的消息，但还没来得及持久化该消息时RabbitMQ服务器就断电了），如果我们需要对这种小概率事件也要管理起来，那么我们要用到事务。由于这里仅为RabbitMQ的简单介绍，所以这里将不讲解RabbitMQ相关的事务。但事务性能太差一般不建议使用。</p>
+<blockquote>
+<p>持久化介绍和优缺点<br><a href="https://www.cnblogs.com/vipstone/p/9350075.html" target="_blank" rel="noopener">https://www.cnblogs.com/vipstone/p/9350075.html</a><br><a href="https://blog.csdn.net/saytime/article/details/80541423" target="_blank" rel="noopener">https://blog.csdn.net/saytime/article/details/80541423</a></p>
+</blockquote>
+<h3 id="Prefetch-count"><a href="#Prefetch-count" class="headerlink" title="Prefetch count"></a>Prefetch count</h3><p>前面我们讲到如果有多个消费者同时订阅同一个Queue中的消息，Queue中的消息会被平摊给多个消费者。这时如果每个消息的处理时间不同，就有可能会导致某些消费者一直在忙，而另外一些消费者很快就处理完手头工作并一直空闲的情况。我们可以通过设置prefetchCount来限制Queue每次发送给每个消费者的消息数，比如我们设置prefetchCount=1，则Queue每次给每个消费者发送一条消息；消费者处理完这条消息后Queue会再给该消费者发送一条消息。<br><img src="http://cdndiggerplus.b0.upaiyun.com/wp-files/2014/02/2014-2-21-9-49-08.png" alt=""></p>
 
       
     </div>
@@ -443,6 +461,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+        </div>
+      
 
       
       
@@ -452,14 +476,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/28/Spring-Boot-thymeleaf/" rel="next" title="Spirng Boot整合thymeleaf模板案例">
+                <i class="fa fa-chevron-left"></i> Spirng Boot整合thymeleaf模板案例
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/07/我可爱的儿子-六六/" rel="prev" title="我可爱的儿子--六六">
-                我可爱的儿子--六六 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/12/vue同步方法/" rel="prev" title="vue同步方法">
+                vue同步方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -512,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -573,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">1.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">1.1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConnectionFactory、Connection、Channel"><span class="nav-number">1.1.1.</span> <span class="nav-text">ConnectionFactory、Connection、Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">1.1.2.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Message-acknowledgment"><span class="nav-number">1.1.3.</span> <span class="nav-text">Message acknowledgment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Message-durability"><span class="nav-number">1.1.4.</span> <span class="nav-text">Message durability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefetch-count"><span class="nav-number">1.1.5.</span> <span class="nav-text">Prefetch count</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
